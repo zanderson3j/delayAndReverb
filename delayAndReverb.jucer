@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="jZISf8" name="delayAndReverb" projectType="audioplug" jucerVersion="5.4.5"
-              pluginCharacteristicsValue="pluginIsMidiEffectPlugin,pluginIsSynth,pluginWantsMidiIn"
-              pluginManufacturer="andezach" aaxIdentifier="com.andezach.delayAndReverb">
+              pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
+              pluginManufacturer="andezach" aaxIdentifier="com.andezach.delayAndReverb"
+              pluginVST3Category="Instrument,Synth">
   <MAINGROUP id="aUdp70" name="delayAndReverb">
     <GROUP id="{4A5641EC-F68F-ED40-4195-DD821346417F}" name="Source">
       <GROUP id="{2113C57B-E4A7-7173-680D-9F0C83BDA14F}" name="Maxlib">

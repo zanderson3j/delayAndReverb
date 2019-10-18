@@ -12,6 +12,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "SynthSound.h"
+#include "maximilian.h"
 
 class SynthVoice : public SynthesiserVoice
 {
@@ -26,11 +27,11 @@ public:
                     SynthesiserSound *sound,
                     int currerntPitchWheelPosition) override {
         frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
-        
+        level = velocity;
     }
     
     void stopNote (float velocity, bool allowTailOff) override {
-        clearCurrentNote();
+        level = 0;
     }
     
     void pitchWheelMoved (int newPitchWheelValue) override {
@@ -43,8 +44,18 @@ public:
     
     void renderNextBlock (AudioBuffer<float> &outputBuffer, int startSample, int numSamples) override {
         
+        for (int sample = 0; sample < numSamples; ++sample) {
+            
+            double sineWave = osc.sinewave(frequency) * level;
+            
+            for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
+                outputBuffer.addSample(channel, startSample + sample, sineWave);
+            }
+        }
     }
 
 private:
     double frequency;
+    maxiOsc osc;
+    float level;
 };
