@@ -6,6 +6,11 @@
               pluginVST3Category="Instrument,Synth">
   <MAINGROUP id="aUdp70" name="delayAndReverb">
     <GROUP id="{4A5641EC-F68F-ED40-4195-DD821346417F}" name="Source">
+      <GROUP id="{1024E690-215F-B536-02C5-A64FEB838B90}" name="aspikFxObjects">
+        <FILE id="X641QL" name="filters.h" compile="0" resource="0" file="../aspikFxObjects/filters.h"/>
+        <FILE id="VIiZ8e" name="fxobjects.cpp" compile="1" resource="0" file="../aspikFxObjects/fxobjects.cpp"/>
+        <FILE id="HmWWNK" name="fxobjects.h" compile="0" resource="0" file="../aspikFxObjects/fxobjects.h"/>
+      </GROUP>
       <GROUP id="{2113C57B-E4A7-7173-680D-9F0C83BDA14F}" name="Maxlib">
         <GROUP id="{2F1A6787-715F-9373-8DDB-68DC09CFE864}" name="libs">
           <FILE id="WPFyUd" name="fft.cpp" compile="1" resource="0" file="../Maxlib/libs/fft.cpp"/>
@@ -43,7 +48,7 @@
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" headerPath="/Users/zanderson/Desktop/Programs/AudioProg/Maxlib"/>
+        <CONFIGURATION isDebug="1" name="Debug" headerPath="/Users/zanderson/Desktop/Programs/AudioProg/Maxlib&#10;/Users/zanderson/Desktop/Programs/AudioProg/aspikFxObjects"/>
         <CONFIGURATION isDebug="0" name="Release"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
@@ -61,6 +66,7 @@
         <MODULEPATH id="juce_gui_basics" path="../../../../../../Applications/JUCE/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../../../../../Applications/JUCE/modules"/>
         <MODULEPATH id="juce_opengl" path="../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../../../../../Applications/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
   </EXPORTFORMATS>
@@ -75,6 +81,7 @@
     <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>

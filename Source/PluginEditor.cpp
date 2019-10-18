@@ -28,11 +28,11 @@ DelayAndReverbAudioProcessorEditor::~DelayAndReverbAudioProcessorEditor()
 void DelayAndReverbAudioProcessorEditor::paint (Graphics& g)
 {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));
+    g.fillAll (Colours::blueviolet);
 
-    g.setColour (Colours::white);
+    g.setColour (Colours::antiquewhite);
     g.setFont (15.0f);
-    g.drawFittedText ("Hello World!", getLocalBounds(), Justification::centred, 1);
+    g.drawFittedText ("DROP-shot", getLocalBounds(), Justification::centred, 1);
 }
 
 void DelayAndReverbAudioProcessorEditor::resized()
