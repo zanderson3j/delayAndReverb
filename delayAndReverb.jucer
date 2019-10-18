@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="jZISf8" name="delayAndReverb" projectType="audioplug" jucerVersion="5.4.5"
+              pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
+              pluginManufacturer="andezach" aaxIdentifier="com.andezach.delayAndReverb">
+  <MAINGROUP id="aUdp70" name="delayAndReverb">
+    <GROUP id="{4A5641EC-F68F-ED40-4195-DD821346417F}" name="Source">
+      <GROUP id="{2113C57B-E4A7-7173-680D-9F0C83BDA14F}" name="Maxlib">
+        <GROUP id="{2F1A6787-715F-9373-8DDB-68DC09CFE864}" name="libs">
+          <FILE id="WPFyUd" name="fft.cpp" compile="1" resource="0" file="../Maxlib/libs/fft.cpp"/>
+          <FILE id="eRQXeS" name="fft.h" compile="0" resource="0" file="../Maxlib/libs/fft.h"/>
+          <FILE id="zzobQZ" name="maxiAtoms.cpp" compile="1" resource="0" file="../Maxlib/libs/maxiAtoms.cpp"/>
+          <FILE id="TdsDkZ" name="maxiAtoms.h" compile="0" resource="0" file="../Maxlib/libs/maxiAtoms.h"/>
+          <FILE id="hJDtuX" name="maxiBark.cpp" compile="1" resource="0" file="../Maxlib/libs/maxiBark.cpp"/>
+          <FILE id="PuGdLo" name="maxiBark.h" compile="0" resource="0" file="../Maxlib/libs/maxiBark.h"/>
+          <FILE id="wsbOcR" name="maxiFFT.cpp" compile="1" resource="0" file="../Maxlib/libs/maxiFFT.cpp"/>
+          <FILE id="Vfr2L0" name="maxiFFT.h" compile="0" resource="0" file="../Maxlib/libs/maxiFFT.h"/>
+          <FILE id="huZWU8" name="maxiGrains.cpp" compile="1" resource="0" file="../Maxlib/libs/maxiGrains.cpp"/>
+          <FILE id="oXu28C" name="maxiGrains.h" compile="0" resource="0" file="../Maxlib/libs/maxiGrains.h"/>
+          <FILE id="o6wVZA" name="maxim.h" compile="0" resource="0" file="../Maxlib/libs/maxim.h"/>
+          <FILE id="fEDjCh" name="maxiMFCC.cpp" compile="1" resource="0" file="../Maxlib/libs/maxiMFCC.cpp"/>
+          <FILE id="XxV8yE" name="maxiMFCC.h" compile="0" resource="0" file="../Maxlib/libs/maxiMFCC.h"/>
+          <FILE id="RXX9sq" name="sineTable.h" compile="0" resource="0" file="../Maxlib/libs/sineTable.h"/>
+        </GROUP>
+        <FILE id="yxRa65" name="main.cpp" compile="1" resource="0" file="../Maxlib/main.cpp"/>
+        <FILE id="NJdNZu" name="maximilian.cpp" compile="1" resource="0" file="../Maxlib/maximilian.cpp"/>
+        <FILE id="nZ3zkX" name="maximilian.h" compile="0" resource="0" file="../Maxlib/maximilian.h"/>
+        <FILE id="VAnyZt" name="stb_vorbis.c" compile="1" resource="0" file="../Maxlib/stb_vorbis.c"/>
+        <FILE id="SncUcE" name="stb_vorbis.h" compile="0" resource="0" file="../Maxlib/stb_vorbis.h"/>
+      </GROUP>
+      <FILE id="uBzhGh" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="tYxexC" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="ye9iFk" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="UzmRti" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" headerPath="/Users/zanderson/Desktop/Programs/AudioProg/Maxlib"/>
+        <CONFIGURATION isDebug="0" name="Release"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../../../../../Applications/JUCE/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+  <LIVE_SETTINGS>
+    <OSX/>
+  </LIVE_SETTINGS>
+  <JUCEOPTIONS JUCE_VST3_CAN_REPLACE_VST2="0" JUCE_STRICT_REFCOUNTEDPOINTER="1"/>
+</JUCERPROJECT>
