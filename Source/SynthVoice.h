@@ -18,18 +18,19 @@ class SynthVoice : public SynthesiserVoice
 public:
     
     bool canPlaySound (SynthesiserSound *sound) override {
-        return true;
+        return dynamic_cast<SynthSound*>(sound) != nullptr;
     }
     
     void startNote (int midiNoteNumber,
                     float velocity,
                     SynthesiserSound *sound,
                     int currerntPitchWheelPosition) override {
+        frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
         
     }
     
     void stopNote (float velocity, bool allowTailOff) override {
-        
+        clearCurrentNote();
     }
     
     void pitchWheelMoved (int newPitchWheelValue) override {
@@ -45,4 +46,5 @@ public:
     }
 
 private:
+    double frequency;
 };
