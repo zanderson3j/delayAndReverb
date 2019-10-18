@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="jZISf8" name="delayAndReverb" projectType="audioplug" jucerVersion="5.4.5"
-              pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
+              pluginCharacteristicsValue="pluginIsMidiEffectPlugin,pluginIsSynth,pluginWantsMidiIn"
               pluginManufacturer="andezach" aaxIdentifier="com.andezach.delayAndReverb">
   <MAINGROUP id="aUdp70" name="delayAndReverb">
     <GROUP id="{4A5641EC-F68F-ED40-4195-DD821346417F}" name="Source">
@@ -35,6 +35,8 @@
       <FILE id="ye9iFk" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
       <FILE id="UzmRti" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="kX8ezN" name="SynthVoice.h" compile="0" resource="0" file="Source/SynthVoice.h"/>
+      <FILE id="fZYunu" name="SynthSound.h" compile="0" resource="0" file="Source/SynthSound.h"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
