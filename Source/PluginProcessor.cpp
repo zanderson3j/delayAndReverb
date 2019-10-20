@@ -22,9 +22,15 @@ DelayAndReverbAudioProcessor::DelayAndReverbAudioProcessor()
                       #endif
                        .withOutput ("Output", AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ),
+tree(*this, nullptr, "PARAMETERS",
+     {
+         std::make_unique<AudioParameterFloat>("delayTime", "DelayTime", NormalisableRange<float>(0.0, 2000.0), 0.0)
+     }),
+delayInMilis(0.0)
 #endif
 {
+    
     synth.clearVoices();
     
     for (int i = 0; i < 10; ++i) {
@@ -170,6 +176,14 @@ void DelayAndReverbAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
 //        // ..do something to the data...
 //    }
     
+    for (int i = 0; i < synth.getNumVoices(); ++i)
+    {
+        if ((voice = dynamic_cast<SynthVoice*>(synth.getVoice(i))))
+        {
+            voice->setDelayTime(tree.getRawParameterValue("delayTime"));
+        }
+    }
+    
     buffer.clear();
     synth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
 }
@@ -197,6 +211,17 @@ void DelayAndReverbAudioProcessor::setStateInformation (const void* data, int si
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
+}
+
+//==============================================================================
+double DelayAndReverbAudioProcessor::getDelayInMilis ()
+{
+    return this->delayInMilis;
+}
+
+void DelayAndReverbAudioProcessor::setDelayInMilis (double delayInMilis)
+{
+    this->delayInMilis = delayInMilis;
 }
 
 //==============================================================================

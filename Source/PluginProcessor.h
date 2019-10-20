@@ -56,11 +56,18 @@ public:
     //==============================================================================
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
+    
+    //==============================================================================
+    double getDelayInMilis();
+    void setDelayInMilis(double);
+    
+    AudioProcessorValueTreeState tree;
 
 private:
     Synthesiser synth;
     SynthVoice* voice;
     double lastSampleRate;
+    double delayInMilis;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DelayAndReverbAudioProcessor)
 };

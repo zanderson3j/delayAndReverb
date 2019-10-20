@@ -103,12 +103,18 @@ public:
             
         }
     }
+    
+    void setDelayTime (float* milis)
+    {
+        this->milis = *milis;
+    }
 
 private:
     double frequency;
     maxiOsc osc;
     maxiEnv env;
     float level;
+    float milis;
     CircularBuffer<float> delayBufferL;
     CircularBuffer<float> delayBufferR;
 };
