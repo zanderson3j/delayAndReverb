@@ -73,12 +73,12 @@ public:
             outputBuffer.addSample(1, startSample + sample, sound);
             
             float ynL = delayBufferL.readBuffer(24000);
-            float y1L = delayBufferL.readBuffer(12000)*0.5;
-            float y2L = delayBufferL.readBuffer(8000)*0.5;
+            float y1L = delayBufferL.readBuffer(8000)*0.5;
+            float y2L = delayBufferL.readBuffer(2000)*0.5;
             
             float ynR = delayBufferR.readBuffer(12000);
-            float y1R = delayBufferR.readBuffer(8000)*0.5;
-            float y2R = delayBufferR.readBuffer(4000)*0.5;
+            float y1R = delayBufferR.readBuffer(4000)*0.5;
+            float y2R = delayBufferR.readBuffer(1000)*0.5;
             
             
 //                        float y1L = 0;
@@ -86,8 +86,8 @@ public:
 //                        float y1R = 0;
 //                        float y2R = 0;
             
-            float dnL = outputBuffer.getSample(0, startSample + sample)*0.5 + (0.8*ynL);
-            float dnR = outputBuffer.getSample(1, startSample + sample)*0.5  + (0.4*ynR);
+            float dnL = outputBuffer.getSample(0, startSample + sample)*0.3 + (0.7*ynL);
+            float dnR = outputBuffer.getSample(1, startSample + sample)*0.3  + (0.7*ynR);
             
             delayBufferL.writeBuffer(dnR);
             delayBufferR.writeBuffer(dnL);
@@ -95,11 +95,11 @@ public:
             outputBuffer.addSample(0,
                                    startSample + sample,
                                    (outputBuffer.getSample(0, startSample + sample)*0.5
-                                   + (ynL + y1L + y2L)*0.5) * 0.01);
+                                   + (ynL + y1L + y2L)*0.5) * 0.125);
             outputBuffer.addSample(1,
                                    startSample + sample,
                                    (outputBuffer.getSample(1, startSample + sample)*0.5
-                                   + (ynR + y1R + y2R)*0.5) * 0.01);
+                                   + (ynR + y1R + y2R)*0.5) * 0.125);
             
         }
     }
