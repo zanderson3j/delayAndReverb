@@ -31,6 +31,8 @@ public:
         env.setDecay(250);
         env.setSustain(0.8);
         env.setRelease(500);
+        
+        delaySamples = 0;
     }
     
     bool canPlaySound (SynthesiserSound *sound) override {
@@ -72,14 +74,13 @@ public:
             outputBuffer.addSample(0, startSample + sample, sound);
             outputBuffer.addSample(1, startSample + sample, sound);
             
-            float ynL = delayBufferL.readBuffer(24000);
+            float ynL = delayBufferL.readBuffer(delaySamples);
             float y1L = delayBufferL.readBuffer(8000)*0.5;
             float y2L = delayBufferL.readBuffer(2000)*0.5;
             
-            float ynR = delayBufferR.readBuffer(12000);
+            float ynR = delayBufferR.readBuffer(delaySamples);
             float y1R = delayBufferR.readBuffer(4000)*0.5;
             float y2R = delayBufferR.readBuffer(1000)*0.5;
-            
             
 //                        float y1L = 0;
 //                        float y2L = 0;
@@ -104,9 +105,14 @@ public:
         }
     }
     
-    void setDelayTime (float* milis)
+    void setDelaySamples(int delaySamples)
     {
-        this->milis = *milis;
+        if (delaySamples != this->delaySamples)
+        {
+            delayBufferL.flushBuffer();
+            delayBufferR.flushBuffer();
+        }
+        this->delaySamples = delaySamples;
     }
 
 private:
@@ -114,7 +120,7 @@ private:
     maxiOsc osc;
     maxiEnv env;
     float level;
-    float milis;
     CircularBuffer<float> delayBufferL;
     CircularBuffer<float> delayBufferR;
+    int delaySamples;
 };

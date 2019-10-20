@@ -180,7 +180,8 @@ void DelayAndReverbAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
     {
         if ((voice = dynamic_cast<SynthVoice*>(synth.getVoice(i))))
         {
-            voice->setDelayTime(tree.getRawParameterValue("delayTime"));
+            int samplesToDelay = *tree.getRawParameterValue("delayTime") * lastSampleRate * 0.001;
+            voice->setDelaySamples(samplesToDelay);
         }
     }
     
