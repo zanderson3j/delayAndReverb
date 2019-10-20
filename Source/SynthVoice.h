@@ -13,7 +13,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "SynthSound.h"
 #include "maximilian.h"
-#include "fxobjects.h"
+#include "DelayFx.h"
 
 class SynthVoice : public SynthesiserVoice
 {
@@ -21,18 +21,10 @@ public:
     
     SynthVoice()
     {
-        delayBufferL.createCircularBuffer(88200);
-        delayBufferL.flushBuffer();
-        
-        delayBufferR.createCircularBuffer(88200);
-        delayBufferR.flushBuffer();
-        
         env.setAttack(1000);
         env.setDecay(250);
         env.setSustain(0.8);
         env.setRelease(500);
-        
-        delaySamples = 0;
     }
     
     bool canPlaySound (SynthesiserSound *sound) override {
@@ -74,45 +66,14 @@ public:
             outputBuffer.addSample(0, startSample + sample, sound);
             outputBuffer.addSample(1, startSample + sample, sound);
             
-            float ynL = delayBufferL.readBuffer(delaySamples);
-            float y1L = delayBufferL.readBuffer(8000)*0.5;
-            float y2L = delayBufferL.readBuffer(2000)*0.5;
-            
-            float ynR = delayBufferR.readBuffer(delaySamples);
-            float y1R = delayBufferR.readBuffer(4000)*0.5;
-            float y2R = delayBufferR.readBuffer(1000)*0.5;
-            
-//                        float y1L = 0;
-//                        float y2L = 0;
-//                        float y1R = 0;
-//                        float y2R = 0;
-            
-            float dnL = outputBuffer.getSample(0, startSample + sample)*0.3 + (0.7*ynL);
-            float dnR = outputBuffer.getSample(1, startSample + sample)*0.3  + (0.7*ynR);
-            
-            delayBufferL.writeBuffer(dnR);
-            delayBufferR.writeBuffer(dnL);
-            
-            outputBuffer.addSample(0,
-                                   startSample + sample,
-                                   (outputBuffer.getSample(0, startSample + sample)*0.5
-                                   + (ynL + y1L + y2L)*0.5) * 0.125);
-            outputBuffer.addSample(1,
-                                   startSample + sample,
-                                   (outputBuffer.getSample(1, startSample + sample)*0.5
-                                   + (ynR + y1R + y2R)*0.5) * 0.125);
+            delayFx.effect(outputBuffer, startSample + sample);
             
         }
     }
     
     void setDelaySamples(int delaySamples)
     {
-        if (delaySamples != this->delaySamples)
-        {
-            delayBufferL.flushBuffer();
-            delayBufferR.flushBuffer();
-        }
-        this->delaySamples = delaySamples;
+        delayFx.setDelaySamples(delaySamples);
     }
 
 private:
@@ -120,7 +81,5 @@ private:
     maxiOsc osc;
     maxiEnv env;
     float level;
-    CircularBuffer<float> delayBufferL;
-    CircularBuffer<float> delayBufferR;
-    int delaySamples;
+    DelayFx delayFx;
 };
