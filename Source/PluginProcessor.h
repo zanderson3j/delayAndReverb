@@ -60,6 +60,8 @@ public:
     //==============================================================================
     double getDelayInMilis();
     void setDelayInMilis(double);
+    double getReverbInMilis();
+    void setReverbInMilis(double);
     
     AudioProcessorValueTreeState tree;
 
@@ -68,6 +70,7 @@ private:
     SynthVoice* voice;
     double lastSampleRate;
     double delayInMilis;
+    double reverbInMilis;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DelayAndReverbAudioProcessor)
 };

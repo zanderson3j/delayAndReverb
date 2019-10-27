@@ -25,9 +25,11 @@ DelayAndReverbAudioProcessor::DelayAndReverbAudioProcessor()
                        ),
 tree(*this, nullptr, "PARAMETERS",
      {
-         std::make_unique<AudioParameterFloat>("delayTime", "DelayTime", NormalisableRange<float>(0.0, 2000.0), 0.0)
+         std::make_unique<AudioParameterFloat>("delayTime", "DelayTime", NormalisableRange<float>(0.0, 2000.0), 0.0),
+         std::make_unique<AudioParameterFloat>("reverbTime", "ReverbTime", NormalisableRange<float>(0.0, 2000.0), 0.0)
      }),
-delayInMilis(0.0)
+delayInMilis(0.0),
+reverbInMilis(0.0)
 #endif
 {
     
@@ -181,7 +183,9 @@ void DelayAndReverbAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
         if ((voice = dynamic_cast<SynthVoice*>(synth.getVoice(i))))
         {
             int samplesToDelay = *tree.getRawParameterValue("delayTime") * lastSampleRate * 0.001;
+            double reverbTime = *tree.getRawParameterValue("reverbTime");
             voice->setDelaySamples(samplesToDelay);
+            voice->setReverbMilis(reverbTime);
         }
     }
     
@@ -223,6 +227,16 @@ double DelayAndReverbAudioProcessor::getDelayInMilis ()
 void DelayAndReverbAudioProcessor::setDelayInMilis (double delayInMilis)
 {
     this->delayInMilis = delayInMilis;
+}
+
+double DelayAndReverbAudioProcessor::getReverbInMilis ()
+{
+    return this->reverbInMilis;
+}
+
+void DelayAndReverbAudioProcessor::setReverbInMilis (double reverbInMilis)
+{
+    this->reverbInMilis = reverbInMilis;
 }
 
 //==============================================================================

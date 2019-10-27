@@ -25,9 +25,20 @@ DelayAndReverbAudioProcessorEditor::DelayAndReverbAudioProcessorEditor (DelayAnd
     delayTime.addListener(this);
     addAndMakeVisible(&delayTime);
     
-    sliderTree = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.tree,
+    reverbTime.setSliderStyle(Slider::SliderStyle::Rotary);
+    reverbTime.setRange(0.0, 2000.0);
+    reverbTime.setValue(0.0);
+    reverbTime.setTextBoxStyle(Slider::TextEntryBoxPosition::NoTextBox, true, 0, 0);
+    reverbTime.addListener(this);
+    addAndMakeVisible(&reverbTime);
+    
+    sliderTreeDelay = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.tree,
                                                                     "delayTime",
                                                                     delayTime);
+    
+    sliderTreeReverb = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.tree,
+                                                                                  "reverbTime",
+                                                                                  reverbTime);
 }
 
 DelayAndReverbAudioProcessorEditor::~DelayAndReverbAudioProcessorEditor()
@@ -51,6 +62,7 @@ void DelayAndReverbAudioProcessorEditor::resized()
     // subcomponents in your editor..
     
     delayTime.setBounds(150, 170, 100, 100);
+    reverbTime.setBounds(150, 20, 100, 100);
 }
 
 void DelayAndReverbAudioProcessorEditor::sliderValueChanged(Slider* slider)
@@ -58,5 +70,10 @@ void DelayAndReverbAudioProcessorEditor::sliderValueChanged(Slider* slider)
     if (slider == &delayTime)
     {
         processor.setDelayInMilis(delayTime.getValue());
+    }
+    
+    if (slider == &reverbTime)
+    {
+        processor.setReverbInMilis(delayTime.getValue());
     }
 }

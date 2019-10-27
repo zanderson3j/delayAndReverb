@@ -35,6 +35,8 @@ public:
         reverbParameters.freezeMode = 0.0f;     /**< Freeze mode - values < 0.5 are "normal" mode, values > 0.5
                                           put the reverb into a continuous feedback loop. */
         reverb.setParameters(reverbParameters);
+        
+        reverbMilis = 0.0;
     }
     
     bool canPlaySound (SynthesiserSound *sound) override {
@@ -72,14 +74,19 @@ public:
             
             double sineWave = osc.sinewave(frequency);
             double sound = env.adsr(sineWave, env.trigger) * level * 0.125f;
-            sound = distortion.atanDist(sound, 200);
+            //sound = distortion.atanDist(sound, 200);
             
             outputBuffer.addSample(0, startSample + sample, sound);
             outputBuffer.addSample(1, startSample + sample, sound);
             
-            reverbFx.effect(outputBuffer, startSample + sample);
+            if(reverbMilis > 100.0) {
+                reverbFx.effect(outputBuffer, startSample + sample);
+            }
+            
             
             delayFx.effect(outputBuffer, startSample + sample);
+            
+            //std::cout << before << " " << after << std::endl;
             
         }
 //        
@@ -92,7 +99,13 @@ public:
     {
         delayFx.setDelaySamples(delaySamples);
     }
-
+    
+    void setReverbMilis(int reverbMilis)
+    {
+        //
+        this->reverbMilis = reverbMilis;
+    }
+    
 private:
     double frequency;
     maxiOsc osc;
@@ -103,4 +116,5 @@ private:
     Reverb::Parameters reverbParameters;
     maxiDistortion distortion;
     ReverbFx reverbFx;
+    double reverbMilis;
 };

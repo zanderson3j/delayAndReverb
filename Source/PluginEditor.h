@@ -33,7 +33,9 @@ private:
     // access the processor object that created it.
     DelayAndReverbAudioProcessor& processor;
     Slider delayTime;
-    unique_ptr<AudioProcessorValueTreeState::SliderAttachment> sliderTree;
+    Slider reverbTime;
+    unique_ptr<AudioProcessorValueTreeState::SliderAttachment> sliderTreeDelay;
+    unique_ptr<AudioProcessorValueTreeState::SliderAttachment> sliderTreeReverb;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DelayAndReverbAudioProcessorEditor)
 };

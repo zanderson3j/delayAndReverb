@@ -35,12 +35,17 @@ public:
         allBuffer2.createCircularBuffer(88200);
         allBuffer2.flushBuffer();
         
-        delaySamples1 = (int) 16.0*44.1;
-        delaySamples2 = (int) 8.0*44.1;
-        delaySamples3 = (int) 4.0*44.1;
-        delaySamples4 = (int) 2.0*44.1;
-        delaySamples5 = (int) 42.6*44.1;
-        delaySamples6 = (int) 64.0*44.1;
+        delaySamples1 = (int) 23.0*44.1;
+        delaySamples2 = (int) 15.3*44.1;
+        delaySamples3 = (int) 10.2*44.1;
+        delaySamples4 = (int) 6.8*44.1;
+        delaySamples5 = (int) 1.0*44.1;
+        delaySamples6 = (int) 3.0*44.1;
+        
+        g1 = 0.52;
+        g2 = 0.66;
+        g3 = 0.76;
+        g4 = 0.83;
         
         yn1 = 0.0;
         yn2 = 0.0;
@@ -55,20 +60,20 @@ public:
         float wn3 = combBuffer3.readBuffer(delaySamples3);
         float wn4 = combBuffer4.readBuffer(delaySamples4);
         
-        float dn1 = outputBuffer.getSample(0, sample)*0.3 + (0.3*wn1);
-        float dn2 = outputBuffer.getSample(0, sample)*0.3 + (0.4*wn2);
-        float dn3 = outputBuffer.getSample(0, sample)*0.3 + (0.5*wn3);
-        float dn4 = outputBuffer.getSample(0, sample)*0.3 + (0.6*wn4);
+        float dn1 = outputBuffer.getSample(0, sample)*0.3 + (g1*wn1);
+        float dn2 = outputBuffer.getSample(0, sample)*0.3 + (g2*wn2);
+        float dn3 = outputBuffer.getSample(0, sample)*0.3 + (g3*wn3);
+        float dn4 = outputBuffer.getSample(0, sample)*0.3 + (g4*wn4);
         
         combBuffer1.writeBuffer(dn1);
         combBuffer2.writeBuffer(dn2);
         combBuffer3.writeBuffer(dn3);
         combBuffer4.writeBuffer(dn4);
         
-        float combMix = dn1 + dn2 + dn3 + dn4;
+        float combMix = dn1 - dn2 + dn3 - dn4;
         
         float vn1 = allBuffer1.readBuffer(delaySamples5);
-        float un1 = combMix*0.3 + (0.7*vn1);
+        float un1 = combMix*0.7 + (0.3*vn1);
         
         allBuffer1.writeBuffer(un1);
         
@@ -76,11 +81,11 @@ public:
         
         
         float vn2 = allBuffer2.readBuffer(delaySamples5);
-        float un2 = yn1*0.3 + (0.7*vn2);
+        float un2 = yn1*0.7 + (0.3*vn2);
         
         allBuffer2.writeBuffer(un2);
         
-        yn2 = (-0.7*yn1) + un2 + (0.7*yn1);
+        yn2 = (-0.7*yn1) + un2 + (0.7*yn2);
         
         //yn2 = filter.lopass(yn2, 3000.0);
         
@@ -105,5 +110,9 @@ private:
     int delaySamples6;
     float yn1;
     float yn2;
+    float g1;
+    float g2;
+    float g3;
+    float g4;
     maxiFilter filter;
 };
