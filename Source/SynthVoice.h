@@ -34,7 +34,7 @@ public:
         reverbParameters.width      = 0.2f;     /**< Reverb width, 0 to 1.0, where 1.0 is very wide. */
         reverbParameters.freezeMode = 0.0f;     /**< Freeze mode - values < 0.5 are "normal" mode, values > 0.5
                                           put the reverb into a continuous feedback loop. */
-        reverb.setParameters(reverbParameters);
+//        reverb.setParameters(reverbParameters);
         
         reverbMilis = 0.0;
     }
@@ -85,11 +85,8 @@ public:
             
             
             delayFx.effect(outputBuffer, startSample + sample);
-            
-            //std::cout << before << " " << after << std::endl;
-            
         }
-//        
+        
 //        reverb.processStereo(outputBuffer.getWritePointer(0, startSample),
 //                             outputBuffer.getWritePointer(1, startSample),
 //                             numSamples);
