@@ -44,6 +44,7 @@
       <FILE id="kX8ezN" name="SynthVoice.h" compile="0" resource="0" file="Source/SynthVoice.h"/>
       <FILE id="fZYunu" name="SynthSound.h" compile="0" resource="0" file="Source/SynthSound.h"/>
       <FILE id="eOI1qI" name="DelayFx.h" compile="0" resource="0" file="Source/DelayFx.h"/>
+      <FILE id="rkES84" name="ReverbFx.h" compile="0" resource="0" file="Source/ReverbFx.h"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
